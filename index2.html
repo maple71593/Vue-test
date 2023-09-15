@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <button @click="fn">+</button>
+        <p>{{age}}</p>
+        <button @click="age--">-</button>
+        ----------------------------------
+        <br>
+        <button @click="fn">點我</button>
+        <p v-if="show === false">掰勒</p>
+        <p v-else>我又回來囉</p>
+    </div>
+    <script>
+        const app = new Vue({
+            el:'#app',
+            data:{
+                id:2,
+                age:10,
+                show:false,
+                show1:true,
+            },
+            methods:{
+                fn(){
+                    this.show = !this.show
+                }
+            }
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+<link rel="stylesheet" href="index.css" />
+<title>記事本</title>
+</head>
+<body>
+
+<!-- 主體區域 -->
+<section id="app">
+  <!-- 輸入框 -->
+  <header class="header">
+    <h1>小黑記事本</h1>
+    <input @keyup.enter="add" v-model="adds" placeholder="請輸入任務" class="new-todo" />
+    <button @click='add' class="add">添加任務</button>
+  </header>
+  <!-- 清單區域 -->
+  <section class="main">
+    <ul class="todo-list">
+      <li v-for='(item,index) in sports' class="todo" :key="item.id">
+        <div class="view">
+          <span class="index">{{index + 1}}</span>
+          <label>{{item.sport}}</label>
+          <button @click="sp(item.id)" class="destroy"></button>
+        </div>
+      </li>
+    </ul>
+  </section>
+  <!-- 統計和清空 -->
+  <footer class="footer">
+    <!-- 統計 -->
+    <span class="todo-count">合 計:<strong> {{sports.length}} </strong></span>
+    <!-- 清空 -->
+    <button @click='alldel'class="clear-completed">
+      清空任務
+    </button>
+  </footer>
+</section>
+
+<!-- 底部 -->
+<script>
+
+  const app = new Vue({
+    el: '#app',
+    data: {
+      adds:'',
+      sports:[
+        {id:1 , sport:'打籃球', times:60},
+        {id:2 , sport:'拳擊', times:60},
+        {id:3 , sport:'跑步', times:30},
+        {id:4 , sport:'游泳', times:120},
+        {id:5 , sport:'深蹲', times:60},
+      ]
+    },
+    methods:{
+      sp(id){
+        if(confirm('確定要刪除嗎?')==true){
+          this.sports = this.sports.filter(item => item.id !== id)
+          alert('已刪除')
+        }
+      },
+      alldel(){
+        if(confirm('確定要刪除全部任務嗎?')==true){
+          this.sports = []
+          alert('已刪除')
+        }
+      },
+      add(){
+        if(this.adds == ''){
+          alert('輸入的值不得為空')
+        }else{
+        alert('新增完成')
+        this.sports.unshift({id: +new Date(),sport:this.adds})
+        this.adds = ''
+      }
+      }
+
+    }
+  })
+
+</script>
+</body>
+</html>
+
+

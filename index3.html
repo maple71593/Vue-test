@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <h3>賣書的</h3>
+         <ul>
+            <li v-for="(item,index) in books" :key='item-id'>
+                <li v-for="(item,index) in books" :key='item-id'>
+                <span>書名 {{item.bookname}}</span>
+                <span>價格 {{item.money}}</span>
+                <button @click="del(item.id)">刪除</button>
+            </ㄠ>
+         </li>
+    </div>
+    <script>
+        const app = new Vue ({
+            el:'#app',
+            data:{
+                books:[
+                    {id:1, bookname:'人間失格', money:349},
+                    {id:2, bookname:'如何當個好老婆', money:499},
+                    {id:3, bookname:'轉生異世界的阿姨', money:239},
+                    {id:4, bookname:'五體不滿足', money:299},
+                    {id:5, bookname:'托益金色證書全攻略', money:199},
+                ]
+            },
+            methods:{
+                del(id){
+                    if( confirm("你確定要刪除嗎") == true){
+                        this.books = this.books.filter(item => item.id !== id)
+                        alert('已刪除')
+                    }else{
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+</html>
